@@ -62,10 +62,15 @@ class Attribute(pydantic.BaseModel, extra=pydantic.Extra.ignore):
 
 class SourceDetailSettings(pydantic.BaseModel, extra=pydantic.Extra.ignore):
     paintPaddingWidth: int = 20
-    paintPaddingHeight: int = 10
+    paintPaddingHeight: int = 5
     inputAreaWidth: int = 500
-    inputAreaHeight: int = 50
+    inputAreaHeight: int = 40
     inputMarginWidth: int = 100
+    shadowOffsetX: float = 0
+    shadowOffsetY: float = 5
+    shadowBlurRadius: float = 30
+    borderRadius: float = 20
+    backgroundColor: str = "#ffffff"
 
 
 class ThemeSettings(pydantic.BaseModel, extra=pydantic.Extra.ignore):

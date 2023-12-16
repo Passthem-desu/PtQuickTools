@@ -1,5 +1,5 @@
 from PySide6 import QtWidgets, QtCore
-from PySide6.QtGui import QCloseEvent, QPaintEvent, QPainter, QBrush
+from PySide6.QtGui import QCloseEvent, QPaintEvent, QPainter, QBrush, QColor
 from putils.ThemeLoader import getSourceText, SourceName, ThemeLoader
 import pyautogui
 
@@ -54,9 +54,22 @@ class SearchWindow(QtWidgets.QWidget):
             )
         )
 
+        shadow = QtWidgets.QGraphicsDropShadowEffect(self)
+        shadow.setOffset(
+            ThemeLoader.CURRENT_THEME.detailedSettings.shadowOffsetX,
+            ThemeLoader.CURRENT_THEME.detailedSettings.shadowOffsetY,
+        )
+        shadow.setColor(QColor(0, 0, 0, 45))
+        shadow.setBlurRadius(
+            ThemeLoader.CURRENT_THEME.detailedSettings.shadowBlurRadius
+        )
+        self.setGraphicsEffect(shadow)
+
     def paintEvent(self, _: QPaintEvent) -> None:
         painter = QPainter(self)
-        painter.fillRect(
+        painter.setBrush(QBrush(ThemeLoader.CURRENT_THEME.detailedSettings.backgroundColor))
+        painter.setPen(QColor("#00000000"))
+        painter.drawRoundedRect(
             ThemeLoader.CURRENT_THEME.detailedSettings.inputMarginWidth
             - ThemeLoader.CURRENT_THEME.detailedSettings.paintPaddingWidth,
             ThemeLoader.CURRENT_THEME.detailedSettings.inputMarginWidth
@@ -64,8 +77,9 @@ class SearchWindow(QtWidgets.QWidget):
             ThemeLoader.CURRENT_THEME.detailedSettings.paintPaddingWidth * 2
             + ThemeLoader.CURRENT_THEME.detailedSettings.inputAreaWidth,
             ThemeLoader.CURRENT_THEME.detailedSettings.paintPaddingHeight * 2
-            + ThemeLoader.CURRENT_THEME.detailedSettings.inputAreaHeight,
-            QBrush("#ffffff"),
+            + ThemeLoader.CURRENT_THEME.detailedSettings.inputAreaHeight, 
+            ThemeLoader.CURRENT_THEME.detailedSettings.borderRadius, 
+            ThemeLoader.CURRENT_THEME.detailedSettings.borderRadius, 
         )
 
     def isFocused(self):

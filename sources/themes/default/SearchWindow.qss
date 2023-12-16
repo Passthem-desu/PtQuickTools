@@ -1,3 +1,4 @@
 QLineEdit {
     font-size: 20px;
+    background-color: #00000000;
 }

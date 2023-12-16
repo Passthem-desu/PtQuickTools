@@ -1,13 +1,15 @@
 import sys
 from PySide6 import QtWidgets
 from widgets.SearchWindow import SearchWindow
-import putils.LoadSettings as LoadSettings
+import putils.SettingsLoader as SettingsLoader
+import putils.ThemeLoader as ThemeLoader
 
 
 if __name__ == "__main__":
-    LoadSettings.loadSettings()
+    SettingsLoader.loadSettings()
+    ThemeLoader.prepareTheme(SettingsLoader.SettingsLoader.CURRENT_SETTINGS.theme)
 
-    app = QtWidgets.QApplication([])
+    app = QtWidgets.QApplication()
 
     widget = SearchWindow(app)
 

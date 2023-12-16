@@ -60,7 +60,10 @@ class Attribute(pydantic.BaseModel, extra=pydantic.Extra.ignore):
     attributeValue: str
 
 
-class SourceDetailSettings(pydantic.BaseModel, extra=pydantic.Extra.ignore):
+class ThemeSettings(pydantic.BaseModel, extra=pydantic.Extra.ignore):
+    extraAttributes: List[Attribute] = []
+    sources: Dict[SourceName, SourceData] = {}
+
     paintPaddingWidth: int = 20
     paintPaddingHeight: int = 5
     inputAreaWidth: int = 500
@@ -71,12 +74,6 @@ class SourceDetailSettings(pydantic.BaseModel, extra=pydantic.Extra.ignore):
     shadowBlurRadius: float = 30
     borderRadius: float = 20
     backgroundColor: str = "#ffffff"
-
-
-class ThemeSettings(pydantic.BaseModel, extra=pydantic.Extra.ignore):
-    detailedSettings: SourceDetailSettings = SourceDetailSettings()
-    extraAttributes: List[Attribute] = []
-    sources: Dict[SourceName, SourceData] = {}
 
 
 class ThemeLoader:

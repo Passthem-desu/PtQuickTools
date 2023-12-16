@@ -2,4 +2,9 @@ QLineEdit {
     font-size: 20px;
     background-color: #00000000;
     border: 0 solid #00000000;
+    color: #333;
+}
+
+QLineEdit:hover {
+    background-color: #04000000;
 }

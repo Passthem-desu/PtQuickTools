@@ -21,6 +21,7 @@ class Settings(pydantic.BaseModel, extra=pydantic.Extra.ignore):
     hotkeys: HotkeySettings = HotkeySettings()
     width: int = 500
     height: int = 50
+    hideWindowIfError: bool = True
 
 
 class SettingsLoader:
